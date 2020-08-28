@@ -4,7 +4,7 @@
 [![Coverage Status](https://coveralls.io/repos/gordalina/hush_aws_secrets_manager/badge.svg?branch=master)](https://coveralls.io/r/gordalina/hush_aws_secrets_manager?branch=master)
 [![hex.pm version](https://img.shields.io/hexpm/v/hush_aws_secrets_manager.svg)](https://hex.pm/packages/hush_aws_secrets_manager)
 
-This package provides a [Hush](https://github.com/gordalina/hush) Provider to resolve Google Cloud Platform's [Secret Manager](https://cloud.google.com/secret-manager) secrets.
+This package provides a [Hush](https://github.com/gordalina/hush) Provider to resolve Amazon Web Services's [Secrets Manager](https://aws.amazon.com/secrets-manager/) secrets.
 
 Documentation can be found at [https://hexdocs.pm/hush_aws_secrets_manager](https://hexdocs.pm/hush_aws_secrets_manager).
 
