@@ -7,6 +7,7 @@ defmodule Hush.Release do
 
     ensure_git_clean()
 
+    replace_infile("CHANGELOG.md", ~r/## Next/, "## v#{version}")
     replace_infile("mix.exs", ~r/@version \".*\"/, "@version \"#{version}\"")
 
     replace_infile(
@@ -18,7 +19,7 @@ defmodule Hush.Release do
     show_git_diff()
     ensure_user_wants_release()
 
-    git(["add", "README.md", "mix.exs"])
+    git(["add", "CHANGELOG.md", "README.md", "mix.exs"])
     git(["commit", "-m", "Bump version to v#{version}"])
     git(["tag", "v#{version}"])
     git(["push"])
@@ -44,7 +45,7 @@ defmodule Hush.Release do
 
   defp ensure_user_wants_release() do
     if IO.gets("Do you want to release this version [y/N]? ") != "y\n" do
-      git(["checkout", "HEAD", "README.md", "mix.exs"])
+      git(["checkout", "HEAD", "CHANGELOG.md", "README.md", "mix.exs"])
       raise RuntimeError, message: "Release aborted"
     end
   end
