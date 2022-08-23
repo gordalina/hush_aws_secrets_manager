@@ -20,7 +20,8 @@ defmodule Hush.Provider.AwsSecretsManager do
   @impl Hush.Provider
   @spec load(config :: any()) :: :ok | {:error, any()}
   def load(_config) do
-    with {:ok, _} <- Application.ensure_all_started(:ex_aws) do
+    with {:ok, _} <- Application.ensure_all_started(:hackney),
+         {:ok, _} <- Application.ensure_all_started(:ex_aws) do
       :ok
     end
   end
