@@ -17,7 +17,7 @@ of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:hush, "~> 0.4.0"},
+    {:hush, "~> 0.4"},
     {:hush_aws_secrets_manager, "~> 0.1.1"}
   ]
 end

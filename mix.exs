@@ -40,7 +40,7 @@ defmodule HushAwsSecretsManager.MixProject do
       {:ex_aws, "~> 2.0"},
       {:ex_aws_secretsmanager, "~> 2.0"},
       {:hackney, "~> 1.17"},
-      {:hush, path: "../hush"},
+      {:hush, "~> 0.4"},
       {:mox, "~> 0.5", only: :test},
       {:ex_check, "~> 0.12", only: :dev, runtime: false},
       {:credo, "~> 1.4", only: :dev, runtime: false},
