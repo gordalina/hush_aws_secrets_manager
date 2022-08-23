@@ -1,8 +1,9 @@
 # AWS Secrets Manager Hush Provider
 
-[![Build Status](https://github.com/gordalina/hush_aws_secrets_manager/workflows/ci/badge.svg)](https://github.com/gordalina/hush_aws_secrets_manager/actions?query=workflow%3A%22ci%22)
-[![Coverage Status](https://coveralls.io/repos/gordalina/hush_aws_secrets_manager/badge.svg?branch=master)](https://coveralls.io/r/gordalina/hush_aws_secrets_manager?branch=master)
-[![hex.pm version](https://img.shields.io/hexpm/v/hush_aws_secrets_manager.svg)](https://hex.pm/packages/hush_aws_secrets_manager)
+[![Build Status](https://img.shields.io/github/workflow/status/gordalina/hush_aws_secrets_manager/ci?style=flat-square)](https://github.com/gordalina/hush_aws_secrets_manager/actions?query=workflow%3A%22ci%22)
+[![Coverage Status](https://img.shields.io/coveralls/github/gordalina/hush_aws_secrets_manager?style=flat-square)](https://app.codecov.io/gh/gordalina/hush_aws_secrets_manager)
+[![hex.pm version](https://img.shields.io/hexpm/v/hush_aws_secrets_manager?style=flat-square)](https://hex.pm/packages/hush_aws_secrets_manager)
+[![hex.pm downloads](https://img.shields.io/hexpm/dt/hush_aws_secrets_manager?style=flat-square)]([LICENSE](https://hex.pm/packages/hush_aws_secrets_manager))
 
 This package provides a [Hush](https://github.com/gordalina/hush) Provider to resolve Amazon Web Services's [Secrets Manager](https://aws.amazon.com/secrets-manager/) secrets.
 
