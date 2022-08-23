@@ -21,7 +21,7 @@ defmodule Hush.Release do
 
     git(["add", "CHANGELOG.md", "README.md", "mix.exs"])
     git(["commit", "-m", "Bump version to v#{version}"])
-    git(["tag", "v#{version}"])
+    git(["tag", "v#{version}", "-m", "v#{version}"])
     git(["push"])
     git(["push", "--tags"])
   end
