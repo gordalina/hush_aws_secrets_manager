@@ -26,7 +26,23 @@ defmodule Hush.Release do
     git(["push", "--tags"])
   end
 
-  def run([]), do: IO.puts("Need to supply an argument with a version in the format: 0.0.0")
+  def run([]) do
+    tags =
+      git(["tag", "--list", "--sort=-v:refname"])
+      |> then(fn {contents, 0} -> contents end)
+      |> String.trim()
+      |> String.split("\n")
+      |> Enum.slice(0..5)
+
+    """
+    Error: Missing version
+    Usage: bin/release.exs 0.0.0
+
+    Last 5 tags:
+    - #{tags |> Enum.join("\n- ")}
+    """
+    |> IO.write()
+  end
 
   defp replace_infile(file, pattern, subst) do
     file
