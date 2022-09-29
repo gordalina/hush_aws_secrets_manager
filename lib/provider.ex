@@ -37,14 +37,10 @@ defmodule Hush.Provider.AwsSecretsManager do
     end
   end
 
-  defp ex_aws() do
-    Application.get_env(:hush_aws_secrets_manager, :ex_aws, AwsSecretsManager.ExAws)
-  end
-
   defp secret(key) do
     key
     |> ExAws.SecretsManager.get_secret_value()
-    |> ex_aws().request()
+    |> AwsSecretsManager.ExAws.request()
   end
 
   defp json_decode(json) do

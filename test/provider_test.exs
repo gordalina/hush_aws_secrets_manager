@@ -15,30 +15,26 @@ defmodule Hush.Provider.AwsSecretsManagerTest do
 
   describe "fetch/1" do
     test "ok" do
-      expect(AwsSecretsManager.MockExAws, :request, 1, fn _ ->
-        {:ok, %{"SecretString" => "{\"key\":\"val\"}"}}
-      end)
+      AwsSecretsManager.MockExAws
+      |> expect(:request, 1, fn _, _ -> {:ok, %{"SecretString" => "{\"key\":\"val\"}"}} end)
 
       assert {:ok, %{"key" => "val"}} == AwsSecretsManager.fetch("KEY_BASE")
     end
 
     test "json parse error" do
-      expect(AwsSecretsManager.MockExAws, :request, 1, fn _ ->
-        {:ok, %{"SecretString" => "invalid json"}}
-      end)
+      AwsSecretsManager.MockExAws
+      |> expect(:request, 1, fn _, _ -> {:ok, %{"SecretString" => "invalid json"}} end)
 
       assert {:error, "Could not parse JSON: invalid json"} == AwsSecretsManager.fetch("KEY_BASE")
     end
 
     test "unknown secret" do
-      expect(AwsSecretsManager.MockExAws, :request, 1, fn _ ->
-        {:error,
-         {:http_error, 400,
-          %{
-            body:
-              "{\"__type\":\"AccessDeniedException\",\"Message\":\"User: arn:aws:iam::000000000000:user/user is not authorized to perform: secretsmanager:GetSecretValue on resource: arn:aws:secretsmanager:us-east-1:000000000000:secret:KEY_BASE\"}",
-            status_code: 400
-          }}}
+      AwsSecretsManager.MockExAws
+      |> expect(:request, 1, fn _, _ ->
+        body =
+          "{\"__type\":\"AccessDeniedException\",\"Message\":\"User: arn:aws:iam::000000000000:user/user is not authorized to perform: secretsmanager:GetSecretValue on resource: arn:aws:secretsmanager:us-east-1:000000000000:secret:KEY_BASE\"}"
+
+        {:error, {:http_error, 400, %{body: body, status_code: 400}}}
       end)
 
       message = """
@@ -56,13 +52,10 @@ defmodule Hush.Provider.AwsSecretsManagerTest do
     end
 
     test "random error" do
-      expect(AwsSecretsManager.MockExAws, :request, 1, fn _ ->
-        {:error,
-         {:http_error, 400,
-          %{
-            body: "{\"__type\":\"RandomErrorException\",\"Message\":\"Random Error\"}",
-            status_code: 400
-          }}}
+      AwsSecretsManager.MockExAws
+      |> expect(:request, 1, fn _, _ ->
+        body = "{\"__type\":\"RandomErrorException\",\"Message\":\"Random Error\"}"
+        {:error, {:http_error, 400, %{body: body, status_code: 400}}}
       end)
 
       message = "An unknown error ocurred while fethching secret for KEY_BASE"
