@@ -49,7 +49,7 @@ defmodule Hush.Provider.AwsSecretsManager do
       codec = defaults[:json_codec]
       {:ok, codec.decode!(json)}
     rescue
-      e -> {:error, "Could not parse JSON: #{e.data}"}
+      _ -> {:error, "Could not parse JSON: #{json}"}
     end
   end
 
