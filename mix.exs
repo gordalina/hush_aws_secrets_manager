@@ -8,7 +8,7 @@ defmodule HushAwsSecretsManager.MixProject do
     [
       app: :hush_aws_secrets_manager,
       version: @version,
-      elixir: "~> 1.9",
+      elixir: "~> 1.11",
       deps: deps(),
       docs: docs(),
       description: description(),
