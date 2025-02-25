@@ -58,7 +58,7 @@ defmodule Hush.Provider.AwsSecretsManagerTest do
         {:error, {:http_error, 400, %{body: body, status_code: 400}}}
       end)
 
-      message = "An unknown error ocurred while fethching secret for KEY_BASE"
+      message = "An unknown error occurred while fetching secret for KEY_BASE"
       assert {:error, message} == AwsSecretsManager.fetch("KEY_BASE")
     end
   end
